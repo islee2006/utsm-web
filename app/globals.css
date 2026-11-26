@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+:root {
+  --utsm-blue: #1a56db;
+  --utsm-blue-light: #3b82f6;
+  --utsm-gold: #f59e0b;
+  --utsm-dark: #0a0a0a;
+  --utsm-surface: #111111;
+  --utsm-border: #1f1f1f;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--utsm-dark);
+  color: #f5f5f5;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Fade-in animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.animate-fade-up-delay-1 { animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+.animate-fade-up-delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+.animate-fade-up-delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+.animate-fade-up-delay-4 { animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards; animation-name: fadeUp; animation-duration: 0.6s; animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-fade-up-delay-1,
+  .animate-fade-up-delay-2,
+  .animate-fade-up-delay-3,
+  .animate-fade-up-delay-4 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Glow effect for accent elements */
+.glow-blue {
+  box-shadow: 0 0 20px rgba(26, 86, 219, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #60a5fa 0%, #1a56db 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26, 86, 219, 0.5);
+}
+
+/* Teams grid — explicit CSS grid, 3 fixed-width columns */
+.teams-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 360px);
+  gap: 24px;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media (max-width: 900px) {
+  .teams-grid {
+    grid-template-columns: repeat(2, 360px);
+  }
+}
+@media (max-width: 620px) {
+  .teams-grid {
+    grid-template-columns: minmax(280px, 360px);
+  }
+}
+
+/* Team card */
+.team-card {
+  display: block;
+  position: relative;
+  text-decoration: none;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.team-card:hover {
+  transform: translateY(-24px) scale(1.03);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+}
+
+/* Image zoom on hover */
+.team-card .team-img {
+  transition: background-size 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.team-card:hover .team-img {
+  background-size: 340% auto;
+}
+
+/* Label bar on hover */
+.team-card .team-label {
+  transition: background-color 0.3s ease, letter-spacing 0.3s ease;
+}
+.team-card:hover .team-label {
+  background-color: #1a3f80;
+  letter-spacing: 0.22em;
+}
+
+/* Lead cards (business / team pages) */
+.lead-card {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+              box-shadow 0.3s ease;
+  cursor: default;
+}
+.lead-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* LinkedIn overlay on lead card photos */
+.linkedin-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 102, 194, 0.75);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.lead-card:hover .linkedin-overlay {
+  opacity: 1;
+}
+.linkedin-overlay svg {
+  transform: scale(0.8);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+}
+.lead-card:hover .linkedin-overlay svg {
+  transform: scale(1);
+}
+
+/* Hero grid background */
+.hero-grid {
+  background-image: 
+    linear-gradient(rgba(26, 86, 219, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 86, 219, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
