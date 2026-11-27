@@ -181,6 +181,7 @@ export default function ComplaintsPolicyPage() {
           grid-template-columns: 1fr 1fr;
           gap: 1.5rem;
         }
+        .policy-mini-grid .policy-card { height: 100%; }
         .policy-list {
           margin: 0;
           padding: 0;
