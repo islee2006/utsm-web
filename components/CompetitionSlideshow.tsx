@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 type Photo = { src: string; caption: string };
 
 export default function CompetitionSlideshow({ photos, isCurrent }: { photos: Photo[]; isCurrent: boolean }) {
   const [offset, setOffset] = useState(0);
+  const [dir, setDir] = useState<1 | -1>(1);
   const hasPhotos = photos.length > 0;
   const count = hasPhotos ? photos.length : 3;
 
@@ -13,8 +14,8 @@ export default function CompetitionSlideshow({ photos, isCurrent }: { photos: Ph
     return hasPhotos ? photos[idx] : null;
   });
 
-  const prev = () => setOffset(o => (o - 1 + count) % count);
-  const next = () => setOffset(o => (o + 1) % count);
+  const prev = () => { setDir(-1); setOffset(o => (o - 1 + count) % count); };
+  const next = () => { setDir(1); setOffset(o => (o + 1) % count); };
 
   return (
     <div style={{ position: "relative", marginBottom: "1.75rem" }}>
@@ -27,10 +28,11 @@ export default function CompetitionSlideshow({ photos, isCurrent }: { photos: Ph
       >‹</button>
 
       {/* 3-photo grid */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px", overflow: "hidden" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "6px", overflow: "hidden", "--from": `${dir * 40}px` } as CSSProperties}>
         {visible.map((photo, i) =>
           photo ? (
-            <div key={`${offset}-${i}`} className="comp-slide" style={{ position: "relative", overflow: "hidden", borderRadius: "5px", aspectRatio: "4/3", backgroundColor: "#0d1e3d" }}>
+            // the offset in the key remounts each tile, which replays the entrance animation
+            <div key={`${offset}-${i}`} className="comp-slide" style={{ position: "relative", overflow: "hidden", borderRadius: "5px", aspectRatio: "4/3", backgroundColor: "#0d1e3d", animationDelay: `${(dir === 1 ? i : 2 - i) * 60}ms` }}>
               <img
                 src={photo.src}
                 alt={photo.caption}
@@ -60,7 +62,7 @@ export default function CompetitionSlideshow({ photos, isCurrent }: { photos: Ph
           {Array.from({ length: count }).map((_, i) => (
             <button
               key={i}
-              onClick={() => setOffset(i)}
+              onClick={() => { setDir(i > offset ? 1 : -1); setOffset(i); }}
               aria-label={`Go to slide ${i + 1}`}
               style={{ width: i === offset ? "1.25rem" : "0.35rem", height: "0.35rem", borderRadius: "2px", backgroundColor: i === offset ? (isCurrent ? "#3b82f6" : "rgba(255,255,255,0.7)") : "rgba(255,255,255,0.25)", border: "none", cursor: "pointer", transition: "all 0.3s ease", padding: 0 }}
             />
@@ -77,8 +79,10 @@ export default function CompetitionSlideshow({ photos, isCurrent }: { photos: Ph
         }
         .comp-slide:hover .slide-overlay { opacity: 1 !important; }
         .comp-slide:hover .slide-caption { opacity: 1 !important; }
-        .comp-slide { transition: transform 0.4s cubic-bezier(0.23,1,0.32,1); }
+        @keyframes compSlideIn { from { opacity: 0; transform: translateX(var(--from)); } }
+        .comp-slide { transition: transform 0.4s cubic-bezier(0.23,1,0.32,1); animation: compSlideIn 0.45s cubic-bezier(0.23,1,0.32,1) backwards; }
         .comp-slide:hover { transform: scale(1.02); }
+        @media (prefers-reduced-motion: reduce) { .comp-slide { --from: 0px; } }
       `}</style>
     </div>
   );

@@ -31,7 +31,7 @@ const cars = [
     imagePosition: "52% center",
     flipLayout: true,
     isCurrent: true,
-    href: null,
+    href: "/cars/jackson-storm",
     desc: "A hydrogen-powered vehicle designed to advance sustainable urban transportation by combining energy efficiency, innovative fuel cell technology, and practical automotive design.",
   },
   {

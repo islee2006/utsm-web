@@ -12,7 +12,7 @@ const navLinks = [
     href: "/cars",
     children: [
       { label: "Prototype", href: "/cars/prototype" },
-      { label: "Urban Concept", href: "/cars/urban-concept" },
+      { label: "Urban Concept", href: "/cars/jackson-storm" },
       { label: "Newsletters", href: "/cars/newsletters" },
     ],
   },

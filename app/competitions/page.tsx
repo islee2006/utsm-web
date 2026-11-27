@@ -182,9 +182,9 @@ export default function CompetitionsPage() {
           </div>
           <h1
             className="text-white uppercase animate-fade-up-delay-1"
-            style={{ fontFamily: "var(--font-anton)", fontSize: "clamp(4rem, 11vw, 9rem)", lineHeight: 0.95, letterSpacing: "0.01em", textShadow: "0 4px 40px rgba(0,0,0,0.5)" }}
+            style={{ fontFamily: "var(--font-anton)", fontSize: "clamp(2.5rem, 13vw, 9rem)", lineHeight: 0.95, letterSpacing: "0.01em", textShadow: "0 4px 40px rgba(0,0,0,0.5)" }}
           >
-            COMPETI<br />TIONS
+            COMPETITIONS
           </h1>
           <p className="text-gray-300 mt-6 animate-fade-up-delay-2" style={{ fontSize: "clamp(0.85rem, 1.5vw, 1rem)", maxWidth: "440px", lineHeight: 1.65, opacity: 0.8 }}>
             Competing at the Indianapolis Motor Speedway against the best energy-efficiency engineering teams in North and South America.
