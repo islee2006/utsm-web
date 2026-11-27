@@ -19,7 +19,7 @@ const cars = {
     name: 'RAVEN', type: 'Prototype', year: '2T6', speed: 60, power: ['Battery', 'Electric'],
     tagline: 'Battery-Powered Hyper-Efficient Vehicle',
     about: "RAVEN is the University of Toronto's battery-electric prototype vehicle, engineered for maximum efficiency in the Shell Eco-Marathon competition. Built with a carbon fibre aerobody and a precision-engineered drivetrain, every component is optimized to push the boundaries of energy efficiency.",
-    sidePhoto: '/Prototype 2025.jpg', sidePosition: 'center 95%', heroPhoto: '/raven-hero-2t6.jpg', heroPosition: 'center 47%', teamPhoto: '/raven-team-2t6.jpg',
+    sidePhoto: '/Prototype 2025.jpg', sidePosition: 'center 95%', heroPhoto: '/raven-hero-2t6.jpg', heroPosition: 'center 47%',
     base: '#040e22', dark: '#020914', panel: '#0c1f3d', hover: '#112540', accent: '#60a5fa', bar: '#3b82f6', text: '190,215,255', shade: '2,9,20',
     cards: [
       {
