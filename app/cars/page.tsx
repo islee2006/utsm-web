@@ -17,7 +17,7 @@ const cars = [
     imagePosition: "41% center",
     flipLayout: false,
     isCurrent: true,
-    href: null,
+    href: "/cars/tempest",
     desc: "An ultralight, battery-electric vehicle engineered to maximize energy efficiency through aerodynamic design, lightweight construction, and an optimized electric powertrain.",
   },
   {
@@ -55,8 +55,10 @@ const cars = [
     name: "LIGHTNING McWIN",
     class: "URBAN CONCEPT",
     accentColor: "#ef4444",
-    image: "/UC 2025.JPG",
-    imagePosition: "center 55%",
+    image: "/lightning-mcwin-wide.png",
+    imagePosition: "52% center",
+    scale: 1.6, // extra zoom beyond cover; the CSS scale property stacks with the hover transform
+    translate: "0 -8%", // negative moves the photo up; keep under (scale - 1) / 2 or a gap shows
     flipLayout: true,
     isCurrent: false,
     href: "/cars/urban-concept",
@@ -217,6 +219,8 @@ export default function CarsPage() {
                               height: "100%",
                               objectFit: car.showWhole ? "contain" : "cover",
                               objectPosition: car.imagePosition,
+                              scale: car.scale,
+                              translate: car.translate,
                               display: "block",
                               transition: "transform 0.8s cubic-bezier(0.23, 1, 0.32, 1)",
                               filter: car.isCurrent ? "none" : "saturate(0.75) brightness(0.85)",

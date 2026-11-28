@@ -40,6 +40,33 @@ const cars = {
       },
     ],
   },
+  tempest: {
+    // shortcut: speed and the card copy are carried over from RAVEN, replace with Tempest's real figures
+    name: 'Tempest', type: 'Prototype', year: '2T6', speed: 60, power: ['Battery', 'Electric'],
+    tagline: 'Battery-Powered Hyper-Efficient Vehicle',
+    about: "Tempest is the University of Toronto's 2025–26 battery-electric prototype vehicle. It is an ultralight car engineered to maximize energy efficiency through aerodynamic design, lightweight construction, and an optimized electric powertrain.",
+    // the 16:9 photo has no side slack at wide widths, so it zooms 12% to make room for the shift right (and down, to keep heads in)
+    sidePhoto: '/tempest.jpg', sidePosition: 'center 70%', sideTransform: 'translate(6%, 4%) scale(1.12)', heroPhoto: '/tempest/livery.webp', heroPosition: 'center 48%', teamPhoto: '/tempest/team-2t6.jpg',
+    base: '#040e22', dark: '#020914', panel: '#0c1f3d', hover: '#112540', accent: '#60a5fa', bar: '#3b82f6', text: '190,215,255', shade: '2,9,20',
+    cards: [
+      {
+        title: 'Aerodynamics',
+        body: 'A fully custom carbon fibre aerobody designed to minimize drag and maximize laminar airflow at competition speeds.',
+      },
+      {
+        title: 'Powertrain',
+        body: 'A high-efficiency battery-electric drivetrain with a custom motor controller engineered for peak energy conversion.',
+      },
+      {
+        title: 'Electrical',
+        body: 'Custom battery management and telemetry systems provide real-time data monitoring on vehicle performance during runs.',
+      },
+      {
+        title: 'Chassis',
+        body: 'Lightweight structural design engineered for rigidity and driver safety while meeting Shell Eco-Marathon regulations.',
+      },
+    ],
+  },
   urbanConcept: {
     name: 'Lightning McWin', type: 'Urban Concept', year: '2T5', speed: 40, power: ['Hydrogen', 'Fuel Cell'],
     tagline: 'Hydrogen-Powered Urban Concept Vehicle',
@@ -145,7 +172,7 @@ export default function CarPageContent({ car }: { car: keyof typeof cars }) {
           <img
             src={t.sidePhoto}
             alt={`${t.name} ${t.type}`}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: t.sidePosition, display: 'block' }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: t.sidePosition, transform: 'sideTransform' in t ? t.sideTransform : undefined, display: 'block' }}
           />
           <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(to right, ${t.panel} 0%, transparent 35%)` }} />
           <motion.div
@@ -210,7 +237,7 @@ export default function CarPageContent({ car }: { car: keyof typeof cars }) {
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: `linear-gradient(to right, rgba(${t.shade},0.88) 0%, rgba(${t.shade},0.45) 50%, rgba(${t.shade},0.78) 100%)` }} />
 
         <motion.div {...fadeUp(0.4)} style={{ position: 'absolute', inset: 0, zIndex: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '0 2rem' }}>
-          <p style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.35em', color: t.accent, textTransform: 'uppercase', margin: '0 0 1rem' }}>
+          <p style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.35em', color: `rgb(${t.text})`, textTransform: 'uppercase', margin: '0 0 1rem', textShadow: '0 1px 3px rgba(0,0,0,0.95), 0 0 18px rgba(0,0,0,0.9)' }}>
             {t.tagline}
           </p>
           <h2 style={{ fontFamily: 'var(--font-anton)', fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', color: 'white', textTransform: 'uppercase', letterSpacing: '0.08em', lineHeight: 1, margin: '0 0 1.25rem', textShadow: '0 4px 32px rgba(0,0,0,0.6)' }}>

@@ -11,7 +11,7 @@ const navLinks = [
     label: "CARS",
     href: "/cars",
     children: [
-      { label: "Prototype", href: "/cars/prototype" },
+      { label: "Prototype", href: "/cars/tempest" },
       { label: "Urban Concept", href: "/cars/jackson-storm" },
       { label: "Newsletters", href: "/cars/newsletters" },
     ],

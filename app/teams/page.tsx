@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = { title: "TEAMS" };
 
 // One panoramic image. Each card shows a different third via background-position.
-const IMG = "/Prototype%202025.jpg";
+const IMG = "/tempest-car.png";
 
 const teams = [
   {
@@ -12,21 +12,21 @@ const teams = [
     type: "BATTERY ELECTRIC",
     description: "Reaching new heights in battery electric hyper efficiency and aerodynamics.",
     href: "/teams/prototype",
-    bgPos: "0% 75%",   // left third of the image, shifted up
+    bgPos: "0% 56%",   // left third of the image, framed on the car
   },
   {
     name: "URBAN CONCEPT",
     type: "HYDROGEN FUEL CELL",
     description: "Resembling a traditional vehicle but powered only by hydrogen and oxygen.",
     href: "/teams/urban-concept",
-    bgPos: "50% 75%",  // middle third, shifted up
+    bgPos: "50% 56%",  // middle third, framed on the car
   },
   {
     name: "BUSINESS",
     type: "BACK-END MANAGEMENT",
     description: "Achieving synergy between business operations and engineering.",
     href: "/teams/business",
-    bgPos: "100% 75%", // right third, shifted up
+    bgPos: "100% 56%", // right third, framed on the car
   },
 ];
 
